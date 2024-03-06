@@ -1,18 +1,45 @@
 package com.babel.liquidaciones.services;
 
+import com.babel.liquidaciones.model.Daño;
+import com.babel.liquidaciones.model.Poliza;
+import com.babel.liquidaciones.model.Siniestro;
+import com.babel.liquidaciones.model.example.BaseData;
+import org.springframework.stereotype.Service;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
+@Service
 public class SiniestrosService implements ISiniestrosService {
+
+    private BaseData data;
+
+    public SiniestrosService(BaseData data) {
+        this.data = data;
+    }
+
     @Override
     public void generarSiniestro() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Por favor, introduzca a continuación los datos del siniestro: ");
-        System.out.println("Código de Poliza: ");
-        String codigoPoliza = sc.nextLine();
+
+        Poliza polizaAsociada = null;
+        Boolean polizaCorrecta = false;
+        while (!polizaCorrecta) {
+            System.out.println("Por favor, introduzca a continuación los datos del siniestro: ");
+            System.out.println("Código de Poliza: ");
+            String codigoPoliza = sc.nextLine();
+            polizaAsociada = obtenerPoliza(codigoPoliza);
+
+            if (polizaAsociada == null) {
+                System.err.println("Esa poliza no existe.");
+            }
+            else {
+                polizaCorrecta = true;
+            }
+
+        }
+
         System.out.println("Fecha de ocurrencia (dd/MM/YYYY): ");
         String fecha = sc.nextLine();
         Date fechaSiniestro = null;
@@ -24,14 +51,47 @@ public class SiniestrosService implements ISiniestrosService {
 
         System.out.println("Cause de origen del siniestro: ");
         String causaSiniestro = sc.nextLine();
-        System.out.println("Listado de daños (código de productos separados por ';'): ");
-        String listaDeDaños = sc.nextLine();
-        // TODO procesar daños
 
+        List<Daño> daños = procesarDaños(sc);
+
+        registrarSiniestro(daños, causaSiniestro, fechaSiniestro, polizaAsociada);
+    }
+
+    private void registrarSiniestro(List<Daño> daños, String causaSiniestro, Date fechaSiniestro, Poliza polizaAsociada) {
+        Siniestro siniestro = new Siniestro();
+        siniestro.setDaños(daños);
+        siniestro.setCausa(causaSiniestro);
+        siniestro.setFechaDeOcurrencia(fechaSiniestro);
+        siniestro.setPolizaAsociada(polizaAsociada);
+
+        this.data.altaSiniestro(siniestro);
     }
 
     private Date procesarFecha(String fecha) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.GERMAN);
         return formatter.parse(fecha);
+    }
+
+    private List<Daño> procesarDaños(Scanner sc) {
+        System.out.println("Listado de daños");
+        List<Daño> daños = new ArrayList<>();
+        boolean isDone = false;
+        while (!isDone) {
+            System.out.println("Codigo de poliza: ");
+            String codigoPoliza = sc.nextLine();
+
+            System.out.println("Valor: ");
+            int valor = sc.nextInt();
+            Daño daño = new Daño();
+            daño.setPoliza(this.obtenerPoliza(codigoPoliza));
+            daño.setValor(valor);
+            daños.add(daño);
+        }
+        return daños;
+    }
+
+
+    private Poliza obtenerPoliza(String code) {
+        return this.data.findPolizaByCode(code);
     }
 }

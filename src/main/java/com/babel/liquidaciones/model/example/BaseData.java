@@ -42,6 +42,15 @@ public class BaseData {
         poliza.setImporteCapitalesContratados(10000);
     }
 
+    public Poliza findPolizaByCode(String code) {
+        for (Poliza poliza : this.polizas) {
+            if (poliza.getCodigo().equalsIgnoreCase(code)) {
+                return poliza;
+            }
+        }
+        return null;
+    }
+
     private void createClients() {
         this.clientes = new ArrayList<>();
         Cliente cliente = new Cliente();
@@ -52,6 +61,8 @@ public class BaseData {
         Poliza poliza = new Poliza();
         this.polizas.add(poliza);
         poliza.setClienteAsociado(cliente);
+        poliza.setProducto(products.get("HOGAR15"));
+        poliza.setImporteCapitalesContratados(10000);
         cliente.setPoliza(polizas.get(0));
 
         this.clientes.add(cliente);
@@ -195,5 +206,16 @@ public class BaseData {
 
         return warranties;
 
+    }
+
+
+    public List<Poliza> findPolizasByUser(Cliente usuarioLogueado) {
+        List<Poliza> polizas = new ArrayList<>();
+        for (Poliza poliza : this.polizas) {
+            if (poliza.getClienteAsociado().equals(usuarioLogueado)) {
+                polizas.add(poliza);
+            }
+        }
+        return polizas;
     }
 }
