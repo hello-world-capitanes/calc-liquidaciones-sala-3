@@ -1,0 +1,17 @@
+
+o
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¼ýµâ
+o
+java:S2293)"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ôé¢æ
+o
+java:S2293B"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÚªÌ•
+t
+java:S2293M"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ú¡“ÿùÿÿÿÿ
+m
+java:S1450"WRemove the "products" field and declare it as a local variable in the relevant methods.(ÜéÍŠ
+U
+java:S1854 "@Remove this useless assignment to local variable "riskMoisture".(¡òp
+F
+java:S1481 "1Remove this unused "riskMoisture" local variable.(¡òp
+Y
+java:S1117M">Rename "warranties" which hides the field declared at line 14.(Ú¡“ÿùÿÿÿÿ

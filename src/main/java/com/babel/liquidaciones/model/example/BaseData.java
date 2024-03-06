@@ -1,6 +1,6 @@
-package helloworld.liquidaciondiversos.example;
+package com.babel.liquidaciones.model.example;
 
-import helloworld.liquidaciondiversos.*;
+import com.babel.liquidaciones.model.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
