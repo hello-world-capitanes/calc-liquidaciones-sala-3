@@ -16,6 +16,7 @@ public class BaseData {
     private Map<String, Warranty> warranties;
     private List<Cliente> clientes;
     private List<Poliza> polizas;
+    private List<Siniestro> siniestros;
 
     public BaseData() {
         createRisks();
@@ -23,6 +24,15 @@ public class BaseData {
         createProducts();
         createPolizas();
         createClients();
+        createSiniestros();
+    }
+
+    public void altaSiniestro(Siniestro siniestro) {
+        this.siniestros.add(siniestro);
+    }
+
+    private void createSiniestros() {
+        this.siniestros = new ArrayList<>();
     }
 
     private void createPolizas() {
