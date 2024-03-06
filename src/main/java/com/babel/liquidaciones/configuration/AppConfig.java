@@ -1,9 +1,9 @@
-package es.neesis.annotations.configuration;
+package com.babel.liquidaciones.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = "es.neesis.annotations")
+@ComponentScan(basePackages = "com.babel.liquidaciones")
 public class AppConfig {
 }
