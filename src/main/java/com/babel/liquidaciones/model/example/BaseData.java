@@ -38,10 +38,12 @@ public class BaseData {
         cliente.setNombre("Mario");
         cliente.setContraseña("123");
         cliente.setContacto("mario@gmail.com");
-        cliente.setNif("123456X");
-        cliente.setPoliza(polizas.get(0));
+
         Poliza poliza = new Poliza();
+        this.polizas.add(poliza);
         poliza.setClienteAsociado(cliente);
+        cliente.setPoliza(polizas.get(0));
+
         this.clientes.add(cliente);
     }
 
