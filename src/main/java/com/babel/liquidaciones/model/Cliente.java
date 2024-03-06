@@ -2,8 +2,6 @@ package com.babel.liquidaciones.model;
 
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 public class Cliente {
     private String nombre;
@@ -11,5 +9,6 @@ public class Cliente {
     private String direcion;
     private String nif;
     private String contacto;
+    private Poliza poliza;
 
 }
