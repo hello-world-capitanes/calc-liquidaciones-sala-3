@@ -10,21 +10,25 @@ public class LoginService {
 
     private BaseData data;
 
-    public LoginService(BaseData baseData){
+    public LoginService(BaseData baseData) {
         this.data = baseData;
     }
 
-    public void login() {
+    public boolean login() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Usuario: ");
         String usuario = sc.nextLine();
         System.out.println("Contraseña: ");
         String contraseña = sc.nextLine();
-
+        if (isUserPasswordCorrect(usuario, contraseña)) {
+            return true;
+        }
+        System.err.println("Usuario o contraseña incorrectas");
+        return false;
     }
 
-    private boolean isUserPasswordCorrect(){
-
+    private boolean isUserPasswordCorrect(String usuario, String contraseña) {
+        return this.data.getClienteByNombre(usuario, contraseña) != null;
     }
 
 }
