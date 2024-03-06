@@ -10,6 +10,6 @@ public class Siniestro {
     private Poliza polizaAsociada;
     private Date fechaDeOcurrencia;
     private String causa;
-    private List<String> daños;
+    private List<Daño> daños;
 
 }
