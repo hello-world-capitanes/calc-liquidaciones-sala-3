@@ -1,4 +1,4 @@
-package helloworld.liquidaciondiversos;
+package com.babel.liquidaciones.model;
 
 import lombok.Data;
 

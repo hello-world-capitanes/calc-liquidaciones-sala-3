@@ -1,4 +1,4 @@
-package helloworld.liquidaciondiversos;
+package com.babel.liquidaciones.model;
 
 public enum WarrantyType {
     CONTENT,
