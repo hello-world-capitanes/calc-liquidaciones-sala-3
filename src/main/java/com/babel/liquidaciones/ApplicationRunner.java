@@ -9,7 +9,8 @@ public class ApplicationRunner {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 
-        Menu menu = new Menu();
+
+        Menu menu = context.getBean(Menu.class);
         menu.startSession();
     }
 }
