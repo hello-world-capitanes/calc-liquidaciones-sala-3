@@ -1,12 +1,14 @@
 package com.babel.liquidaciones.model.example;
 
 import com.babel.liquidaciones.model.*;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class BaseData {
     private Map<String, Product> products;
     private Map<String, Risk> risks;
@@ -26,12 +28,19 @@ public class BaseData {
         this.clientes = new ArrayList<>();
         Cliente cliente = new Cliente();
         cliente.setNombre("Mario");
+        cliente.setContraseña("123");
         cliente.setContacto("mario@gmail.com");
         cliente.setNif("123456X");
+        this.clientes.add(cliente);
     }
 
-    public Cliente getClienteByNombre(){
-
+    public Cliente getClienteByNombre(String nombre, String password) {
+        for (Cliente cliente : this.clientes) {
+            if (cliente.getNombre().equalsIgnoreCase(nombre) && cliente.getContraseña().equalsIgnoreCase(password)) {
+                return cliente;
+            }
+        }
+        return null;
     }
 
     private void createRisks() {
