@@ -13,13 +13,21 @@ public class BaseData {
 
     private Map<String, Warranty> warranties;
     private List<Cliente> clientes;
+    private List<Poliza> polizas;
 
     public BaseData() {
         createRisks();
         createWarranties();
         createProducts();
+        createPolizas();
         createClients();
+    }
 
+    private void createPolizas() {
+        this.polizas = new ArrayList<>();
+        Poliza poliza = new Poliza();
+        poliza.setProducto(products.get("HOGAR15"));
+        poliza.setImporteCapitalesContratados(10000);
     }
 
     private void createClients() {
@@ -28,10 +36,13 @@ public class BaseData {
         cliente.setNombre("Mario");
         cliente.setContacto("mario@gmail.com");
         cliente.setNif("123456X");
+        cliente.setPoliza(polizas.get(0));
+        Poliza poliza = new Poliza();
+        poliza.setClienteAsociado(cliente);
     }
 
     public Cliente getClienteByNombre(){
-
+        return new Cliente();
     }
 
     private void createRisks() {
