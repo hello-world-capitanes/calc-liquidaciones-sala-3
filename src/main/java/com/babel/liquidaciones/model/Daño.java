@@ -4,6 +4,8 @@ import lombok.Data;
 
 @Data
 public class Daño {
-    private Integer valor;
+    private Integer valorActual;
+    private Integer valorAnterior;
     private Poliza poliza;
+
 }
