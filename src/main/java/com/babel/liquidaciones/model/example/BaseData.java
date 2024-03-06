@@ -12,16 +12,29 @@ public class BaseData {
     private Map<String, Risk> risks;
 
     private Map<String, Warranty> warranties;
+    private List<Cliente> clientes;
 
-    public BaseData(){
+    public BaseData() {
         createRisks();
         createWarranties();
         createProducts();
-
+        createClients();
 
     }
 
-    private void createRisks(){
+    private void createClients() {
+        this.clientes = new ArrayList<>();
+        Cliente cliente = new Cliente();
+        cliente.setNombre("Mario");
+        cliente.setContacto("mario@gmail.com");
+        cliente.setNif("123456X");
+    }
+
+    public Cliente getClienteByNombre(){
+
+    }
+
+    private void createRisks() {
         this.risks = new HashMap<String, Risk>();
         Risk riskRoberyOutside = new Risk();
         riskRoberyOutside.setCode("RO");
@@ -37,7 +50,7 @@ public class BaseData {
 
     }
 
-    private void createWarranties(){
+    private void createWarranties() {
         this.warranties = new HashMap<String, Warranty>();
         Warranty warrantyRoberyOutside = new Warranty();
         warrantyRoberyOutside.setCode("RO");
@@ -62,7 +75,7 @@ public class BaseData {
         this.warranties.put(warrantyHomeAppliances.getCode(), warrantyHomeAppliances);
     }
 
-    private void createProducts(){
+    private void createProducts() {
         this.products = new HashMap<String, Product>();
         Product product = new Product();
         product.setCode("HOGAR15");
@@ -73,7 +86,7 @@ public class BaseData {
         this.products.put(product.getCode(), product);
     }
 
-    private List<ProductWarranty> createProductWarranties(){
+    private List<ProductWarranty> createProductWarranties() {
         List<ProductWarranty> warranties = new ArrayList<ProductWarranty>();
 
         ProductWarranty warrantyRoberyOutside = new ProductWarranty();
