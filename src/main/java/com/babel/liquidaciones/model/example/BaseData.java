@@ -16,6 +16,7 @@ public class BaseData {
     private Map<String, Warranty> warranties;
     private List<Cliente> clientes;
     private List<Poliza> polizas;
+    private List<Siniestro> siniestros;
 
     public BaseData() {
         createRisks();
@@ -23,13 +24,32 @@ public class BaseData {
         createProducts();
         createPolizas();
         createClients();
+        createSiniestros();
+    }
+
+    public void altaSiniestro(Siniestro siniestro) {
+        this.siniestros.add(siniestro);
+    }
+
+    private void createSiniestros() {
+        this.siniestros = new ArrayList<>();
     }
 
     private void createPolizas() {
         this.polizas = new ArrayList<>();
         Poliza poliza = new Poliza();
+        poliza.setCodigo("1");
         poliza.setProducto(products.get("HOGAR15"));
         poliza.setImporteCapitalesContratados(10000);
+    }
+
+    public Poliza findPolizaByCode(String code) {
+        for (Poliza poliza : this.polizas) {
+            if (poliza.getCodigo().equalsIgnoreCase(code)) {
+                return poliza;
+            }
+        }
+        return null;
     }
 
     private void createClients() {
@@ -40,8 +60,11 @@ public class BaseData {
         cliente.setContacto("mario@gmail.com");
 
         Poliza poliza = new Poliza();
-        this.polizas.add(poliza);
         poliza.setClienteAsociado(cliente);
+        poliza.setProducto(products.get("HOGAR15"));
+        poliza.setImporteCapitalesContratados(10000);
+        poliza.setCodigo("2");
+        this.polizas.add(poliza);
         cliente.setPoliza(polizas.get(0));
 
         this.clientes.add(cliente);
@@ -185,5 +208,16 @@ public class BaseData {
 
         return warranties;
 
+    }
+
+
+    public List<Poliza> findPolizasByUser(Cliente usuarioLogueado) {
+        List<Poliza> polizas = new ArrayList<>();
+        for (Poliza poliza : this.polizas) {
+            if (poliza.getClienteAsociado().equals(usuarioLogueado)) {
+                polizas.add(poliza);
+            }
+        }
+        return polizas;
     }
 }
