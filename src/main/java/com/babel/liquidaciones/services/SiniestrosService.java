@@ -51,7 +51,7 @@ public class SiniestrosService implements ISiniestrosService {
         System.out.println("Cause de origen del siniestro: ");
         String causaSiniestro = sc.nextLine();
 
-        List<Daño> daños = procesarDaños(sc);
+        List<Daño> daños = procesarDaños();
 
         registrarSiniestro(daños, causaSiniestro, fechaSiniestro, polizaAsociada);
     }
@@ -72,11 +72,12 @@ public class SiniestrosService implements ISiniestrosService {
         return formatter.parse(fecha);
     }
 
-    private List<Daño> procesarDaños(Scanner sc) {
+    private List<Daño> procesarDaños() {
         System.out.println("Listado de daños");
         List<Daño> daños = new ArrayList<>();
         boolean isDone = false;
         while (!isDone) {
+            Scanner sc = new Scanner(System.in);
             System.out.println("Codigo de poliza (o 'exit'): ");
             String codigoPoliza = sc.nextLine();
 
