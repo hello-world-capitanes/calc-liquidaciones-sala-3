@@ -26,8 +26,8 @@ public class Menu {
     }
 
     public void startSession() {
-        if (isInSession) {
-            while (this.loginService.login()) {
+        if (this.loginService.login()) {
+            while (isInSession) {
                 inicioMenu();
             }
         }

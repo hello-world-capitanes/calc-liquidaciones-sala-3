@@ -38,6 +38,7 @@ public class BaseData {
     private void createPolizas() {
         this.polizas = new ArrayList<>();
         Poliza poliza = new Poliza();
+        poliza.setCodigo("1");
         poliza.setProducto(products.get("HOGAR15"));
         poliza.setImporteCapitalesContratados(10000);
     }
@@ -59,10 +60,11 @@ public class BaseData {
         cliente.setContacto("mario@gmail.com");
 
         Poliza poliza = new Poliza();
-        this.polizas.add(poliza);
         poliza.setClienteAsociado(cliente);
         poliza.setProducto(products.get("HOGAR15"));
         poliza.setImporteCapitalesContratados(10000);
+        poliza.setCodigo("2");
+        this.polizas.add(poliza);
         cliente.setPoliza(polizas.get(0));
 
         this.clientes.add(cliente);

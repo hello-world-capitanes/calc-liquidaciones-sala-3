@@ -33,8 +33,7 @@ public class SiniestrosService implements ISiniestrosService {
 
             if (polizaAsociada == null) {
                 System.err.println("Esa poliza no existe.");
-            }
-            else {
+            } else {
                 polizaCorrecta = true;
             }
 
@@ -65,6 +64,7 @@ public class SiniestrosService implements ISiniestrosService {
         siniestro.setPolizaAsociada(polizaAsociada);
 
         this.data.altaSiniestro(siniestro);
+        System.out.println("Siniestro registrado");
     }
 
     private Date procesarFecha(String fecha) throws ParseException {
@@ -77,8 +77,12 @@ public class SiniestrosService implements ISiniestrosService {
         List<Daño> daños = new ArrayList<>();
         boolean isDone = false;
         while (!isDone) {
-            System.out.println("Codigo de poliza: ");
+            System.out.println("Codigo de poliza (o 'exit'): ");
             String codigoPoliza = sc.nextLine();
+
+            if (codigoPoliza.equalsIgnoreCase("exit")) {
+                return daños;
+            }
 
             System.out.println("Valor: ");
             int valor = sc.nextInt();
