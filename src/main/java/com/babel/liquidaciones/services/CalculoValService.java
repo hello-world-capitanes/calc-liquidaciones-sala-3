@@ -11,7 +11,7 @@ public class CalculoValService implements ICalculoValService {
     public int calcularPrimerRiesgo(Siniestro siniestro) {
         int importeDamage = 0;
         for(int i=0; i < siniestro.getDaños().size(); i++){
-
+            importeDamage += siniestro.getDaño(i).getValorAnterior();
         }
 
         return 0;
@@ -19,7 +19,12 @@ public class CalculoValService implements ICalculoValService {
 
     @Override
     public int calcularReposicion(Siniestro siniestro) {
-        return 0;
+        int importeDamage = 0;
+        for(int i=0; i < siniestro.getDaños().size(); i++){
+            importeDamage += siniestro.getDaño(i).getValorActual();
+        }
+
+        return importeDamage;
     }
 
     @Override
