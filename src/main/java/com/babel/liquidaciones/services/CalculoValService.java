@@ -1,5 +1,6 @@
 package com.babel.liquidaciones.services;
 
+import com.babel.liquidaciones.model.Daño;
 import com.babel.liquidaciones.model.Siniestro;
 import com.babel.liquidaciones.model.Warranty;
 import org.springframework.stereotype.Service;
@@ -7,28 +8,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class CalculoValService implements ICalculoValService {
 
-    @Override
-    public int calcularPrimerRiesgo(Siniestro siniestro) {
-        int importeDamage = 0;
-        for(int i=0; i < siniestro.getDaños().size(); i++){
-            importeDamage += siniestro.getDaño(i).getValorAnterior();
-        }
+    private Siniestro siniestro;
 
-        return 0;
+    public CalculoValService(Siniestro siniestro){
+        this.siniestro = siniestro;
     }
 
     @Override
-    public int calcularReposicion(Siniestro siniestro) {
-        int importeDamage = 0;
-        for(int i=0; i < siniestro.getDaños().size(); i++){
-            importeDamage += siniestro.getDaño(i).getValorActual();
-        }
+    public Double calcularPrimerRiesgo(Daño daño) {
+        Double capitalInsured = daño.getWarranty().getCapitalInsured();
 
-        return importeDamage;
+        Double liquidacionASumar = Math.min(capitalInsured, this.siniestro.getPolizaAsociada().getImporteCapitalesContratados());
+        return liquidacionASumar;
     }
 
     @Override
-    public int calcularValorReal(Siniestro siniestro) {
-        return 0;
+    public Double calcularReposicion(Warranty warranty) {
+        return 0.0;
+    }
+
+    @Override
+    public Double calcularValorReal(Warranty warranty) {
+        return 0.0;
     }
 }
