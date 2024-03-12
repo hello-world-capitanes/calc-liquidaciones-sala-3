@@ -2,12 +2,12 @@ package com.babel.liquidaciones.services;
 
 import com.babel.liquidaciones.model.Daño;
 import com.babel.liquidaciones.model.Siniestro;
-import com.babel.liquidaciones.model.Warranty;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CalculoValService implements ICalculoValService {
 
+    private final Double DEPRECIACION = 0.0;
     private Siniestro siniestro;
 
     public CalculoValService(Siniestro siniestro){
@@ -29,6 +29,8 @@ public class CalculoValService implements ICalculoValService {
 
     @Override
     public Double calcularValorReal(Daño daño) {
+        Double capitalInsured = daño.getWarranty().getCapitalInsured();
+
         return 0.0;
     }
 }
