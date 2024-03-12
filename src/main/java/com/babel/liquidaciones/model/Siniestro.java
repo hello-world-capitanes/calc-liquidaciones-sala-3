@@ -12,4 +12,8 @@ public class Siniestro {
     private String causa;
     private List<Daño> daños;
 
+    public Daño getDaño(int index){
+        return daños.get(index);
+    }
+
 }
