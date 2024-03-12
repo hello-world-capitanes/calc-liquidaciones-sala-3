@@ -23,12 +23,12 @@ public class CalculoValService implements ICalculoValService {
     }
 
     @Override
-    public Double calcularReposicion(Warranty warranty) {
-        return 0.0;
+    public Double calcularReposicion(Daño daño) {
+        return daño.getWarranty().getCapitalInsured();
     }
 
     @Override
-    public Double calcularValorReal(Warranty warranty) {
+    public Double calcularValorReal(Daño daño) {
         return 0.0;
     }
 }

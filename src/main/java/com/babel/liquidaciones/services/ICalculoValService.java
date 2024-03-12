@@ -6,6 +6,6 @@ import com.babel.liquidaciones.model.Warranty;
 
 public interface ICalculoValService {
     public Double calcularPrimerRiesgo(Daño daño);
-    public Double calcularReposicion(Warranty warranty);
-    public Double calcularValorReal(Warranty warranty);
+    public Double calcularReposicion(Daño daño);
+    public Double calcularValorReal(Daño daño);
 }
