@@ -1,11 +1,9 @@
 package com.babel.liquidaciones.services;
 
-import com.babel.liquidaciones.model.Daño;
-import com.babel.liquidaciones.model.Siniestro;
-import com.babel.liquidaciones.model.Warranty;
+import com.babel.liquidaciones.model.Dano;
 
 public interface ICalculoValService {
-    public Double calcularPrimerRiesgo(Daño daño);
-    public Double calcularReposicion(Daño daño);
-    public Double calcularValorReal(Daño daño);
+    public Double calcularPrimerRiesgo(Dano daño);
+    public Double calcularReposicion(Dano daño);
+    public Double calcularValorReal(Dano daño);
 }
