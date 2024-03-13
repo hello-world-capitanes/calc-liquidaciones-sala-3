@@ -44,6 +44,6 @@ public class CalculoValService implements ICalculoValService {
         double valResidual = capitalInsured * 0.1;
         double total = capitalInsured * antiguedad * depreciacion;
 
-        return total;
+        return Math.max(valResidual,total);
     }
 }
