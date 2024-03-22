@@ -1,6 +1,6 @@
 package com.babel.liquidaciones.services;
 
-import com.babel.liquidaciones.model.Daño;
+import com.babel.liquidaciones.model.Dano;
 import com.babel.liquidaciones.model.Poliza;
 import com.babel.liquidaciones.model.Siniestro;
 import com.babel.liquidaciones.model.example.BaseData;
@@ -51,12 +51,12 @@ public class SiniestrosService implements ISiniestrosService {
         System.out.println("Cause de origen del siniestro: ");
         String causaSiniestro = sc.nextLine();
 
-        List<Daño> daños = procesarDaños();
+        List<Dano> daños = procesarDaños();
 
         registrarSiniestro(daños, causaSiniestro, fechaSiniestro, polizaAsociada);
     }
 
-    private void registrarSiniestro(List<Daño> daños, String causaSiniestro, Date fechaSiniestro, Poliza polizaAsociada) {
+    private void registrarSiniestro(List<Dano> daños, String causaSiniestro, Date fechaSiniestro, Poliza polizaAsociada) {
         Siniestro siniestro = new Siniestro();
         siniestro.setDaños(daños);
         siniestro.setCausa(causaSiniestro);
@@ -72,9 +72,9 @@ public class SiniestrosService implements ISiniestrosService {
         return formatter.parse(fecha);
     }
 
-    private List<Daño> procesarDaños() {
+    private List<Dano> procesarDaños() {
         System.out.println("Listado de daños");
-        List<Daño> daños = new ArrayList<>();
+        List<Dano> daños = new ArrayList<>();
         boolean isDone = false;
         while (!isDone) {
             Scanner sc = new Scanner(System.in);
@@ -87,7 +87,7 @@ public class SiniestrosService implements ISiniestrosService {
 
             System.out.println("Valor: ");
             int valor = sc.nextInt();
-            Daño daño = new Daño();
+            Dano daño = new Dano();
             daño.setPoliza(this.obtenerPoliza(codigoPoliza));
             daño.setValor(valor);
             daños.add(daño);

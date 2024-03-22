@@ -10,10 +10,10 @@ public class Siniestro {
     private Poliza polizaAsociada;
     private Date fechaDeOcurrencia;
     private String causa;
-    private List<Daño> daños;
+    private List<Dano> listaDeDaños;
 
-    public Daño getDaño(int index){
-        return daños.get(index);
+    public Dano getDaño(int index){
+        return listaDeDaños.get(index);
     }
 
 }
